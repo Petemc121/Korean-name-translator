@@ -8,17 +8,25 @@ const englishVowels = ["ah","ya","eo","yeo","oh","yoh","oo","yoo","eu","i"];
 const hanguelVowels2 = ["ㅐ","ㅒ","ㅔ","ㅖ","ㅘ","ㅙ","ㅚ","ㅝ","ㅞ","ㅟ","ㅢ"];
 const englishVowels2 = ["ae","ae","ae","yae","wa","wae","wi","weo","wue","wui","eui"];
 const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; // special character regex
 
+
+//click event for button
 
 button.addEventListener('click', function() { 
     const nameIn = document.getElementById('nameIn').value
     error = false;
+    
+    //name input validation
+    
     if (nameIn != "") {
 
         toString(nameIn)
 
         for(let i = 0; i < nameIn.length; i++) {
+            
+            //test if name is korean letters only
+            
             if (alphabet.includes(nameIn[i]) || isNaN(nameIn[i]) == false || format.test(nameIn[i])) {
                 error = true
             }
