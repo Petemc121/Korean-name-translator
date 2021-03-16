@@ -10,7 +10,6 @@ const englishVowels2 = ["ae","ae","ae","yae","wa","wae","wi","weo","wue","wui","
 const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; // special character regex
 
-
 //click event for button
 
 button.addEventListener('click', function() { 
