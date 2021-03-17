@@ -35,6 +35,9 @@ button.addEventListener('click', function () {
         if (error == true) {
             alert("please enter korean letters only")
         } else {
+
+            // this is A function built into hangeul.js, a library that disects Korean letters into their separated symbols
+
             disasseble = Hangul.disassemble(nameIn);
             console.log(disasseble);
 
@@ -47,8 +50,9 @@ button.addEventListener('click', function () {
 
 })
 
+// function to convert each Korean letter into an english letter 
 
-function convertInput(input) {
+function korToEng(input) {
 
     for (var i = 0; i < input.length; i++) {
 
@@ -59,15 +63,27 @@ function convertInput(input) {
             if (letterTest == false) {
                 if (input[i] == "ㅇ") {
                     if (hangeulVowels.includes(input[i + 1])) {
-                        let engLetter = "ng";
+                        let engLetter = "";
                         return engLetter
+                    } else {
+                        return "ng";
                     }
-                } else if (input[i] == "ㄹ")
+                } else if (input[i] == "ㄹ") {
+                    if (input[i] == input[0]) {
+                        return "R"
+                    } else if (hangeulVowels.includes(input[i - 1])) {
+                        return "r"
+                    } else {
+                        return "l"
+                    }
+                }
             }
 
         }
     }
 }
+
+//function to convert letters exluding "ㅇ" and "ㄹ" (these symbols convert to more than one english symbol depending on their position)
 
 function mapConst(letter) {
 
