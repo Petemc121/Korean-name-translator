@@ -1,10 +1,10 @@
 
 const hanguelConst = ["ㄱ", "ㄴ", "ㄷ", "ㅁ", "ㅂ", "ㅅ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ", "ㄹ", "ㅇ"];
 const englishConst = ["g", "n", "d", "m", "b", "s", "j", "ch", "k", "t", "p", "h", "l", "r", "ng", ""];
-const hanguelVowels = ["ㅏ", "ㅑ", "ㅓ", "ㅕ", "ㅗ", "ㅛ", "ㅜ", "ㅠ", "ㅡ", "ㅣ"];
-const englishVowels = ["a", "ya", "eo", "yeo", "o", "yo", "u", "yu", "eu", "i"];
-const hanguelVowels2 = ["ㅐ", "ㅒ", "ㅔ", "ㅖ", "ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"];
-const englishVowels2 = ["ae", "ae", "ae", "yae", "wa", "wae", "wi", "weo", "wue", "wui", "eui"];
+const hanguelVowels = ["ㅏ", "ㅑ", "ㅓ", "ㅕ", "ㅗ", "ㅛ", "ㅜ", "ㅠ", "ㅡ", "ㅣ","ㅐ", "ㅒ", "ㅔ", "ㅖ",];
+const englishVowels = ["a", "ya", "eo", "yeo", "o", "yo", "u", "yu", "eu", "i","ae","yae","ae","yae"];
+const hanguelVowels2 = ["ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"];
+const englishVowels2 = ["wa", "wae", "wi", "weo", "wue", "wui", "eui"];
 const button = document.getElementById('button');
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; // special character regex
@@ -56,33 +56,69 @@ button.addEventListener('click', function () {
 
 function korToEng(input) {
 
-    engName = [];
+    engName = []
 
     for (var i = 0; i < input.length; i++) {
 
         if (hanguelConst.includes(input[i])) {
 
-            letterTest = mapConst(input[i]);
+            letterConst = mapConst(input[i]);
 
-            if (letterTest == false) {
+            if (letterConst == false) {
                 if (input[i] == "ㅇ") {
                     if (hangeulVowels.includes(input[i + 1])) {
                         let engLetter = "";
-                        return engLetter
+                        engName.push(engLetter);
                     } else {
-                        return "ng";
+                        engName.push('ng');
                     }
                 } else if (input[i] == "ㄹ") {
                     if (input[i] == input[0]) {
-                        return "R"
+                        engName.push('R');
                     } else if (hangeulVowels.includes(input[i - 1])) {
-                        return "r"
+                        engName.push('r');
                     } else {
-                        return "l"
+                        engName.push('l');
                     }
                 }
+            } else {
+                engName.push(letterTest);
             }
 
+        } else if (hanguelVowels.includes(input[i])) {
+                if (input[i] === "ㅗ") {
+                    if(input[i+1] === "ㅏ") {
+                        engName.push("wa");
+
+                    } else 
+                    if(input[i+1] === "ㅐ") {
+                        engName.push("wae");
+                    } else
+                    if(input[i+1] === "ㅣ") {
+                        engName.push("wi");
+                    }
+                } else
+                if (input[i] === "ㅜ") {
+                    if(input[i+1] === "ㅓ") {
+                        engName.push("weo");
+
+                    } else 
+                    if(input[i+1] === "ㅔ") {
+                        engName.push("wae");
+                    } else
+                    if(input[i+1] === "ㅣ") {
+                        engName.push("wi");
+                    }
+                } else 
+                if (input[i] === "ㅡ") {
+                    if(input[i+1] === "ㅣ") {
+                        engName.push("eui");
+                    }
+
+                } else {
+                letterVowel = mapVowel(input[i]);
+                engName.push(letterVowel);
+                }
         }
     }
 }
@@ -100,4 +136,13 @@ function mapConst(letter) {
     } else {
         return false
     }
+}
+
+function mapVowel(letter) {
+
+        position = hanguelConst.indexOf(letter)
+
+        newletter = englishConst[position];
+        return newletter
+
 }
