@@ -121,6 +121,8 @@ function korToEng(input) {
                 }
         }
     }
+
+    console.log(engName);
 }
 
 //function to convert letters exluding "ㅇ" and "ㄹ" (these symbols convert to more than one english symbol depending on their position)
