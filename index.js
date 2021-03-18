@@ -38,8 +38,10 @@ button.addEventListener('click', function () {
 
             // this is A function built into hangeul.js, a library that disects Korean letters into their separated symbols
 
-            disasseble = Hangul.disassemble(nameIn);
-            console.log(disasseble);
+            disassemble = Hangul.disassemble(nameIn);
+            console.log(disassemble);
+            conReturn = korToEng(disassemble);
+            console.log(conReturn)
 
 
 
@@ -53,6 +55,8 @@ button.addEventListener('click', function () {
 // function to convert each Korean letter into an english letter 
 
 function korToEng(input) {
+
+    engName = [];
 
     for (var i = 0; i < input.length; i++) {
 
