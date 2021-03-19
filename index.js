@@ -6,6 +6,7 @@ const englishVowels = ["a", "ya", "eo", "yeo", "o", "yo", "u", "yu", "eu", "i","
 const hanguelVowels2 = ["ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"];
 const englishVowels2 = ["wa", "wae", "wi", "weo", "wue", "wui", "eui"];
 const button = document.getElementById('button');
+const output= document.getElementById('output');
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; // special character regex
 
@@ -96,6 +97,9 @@ function korToEng(input) {
                     } else
                     if(input[i+1] === "ㅣ") {
                         engName.push("wi");
+                    } else {
+                        letterVowel = mapVowel(input[i]);
+                        engName.push(letterVowel);
                     }
                 } else
                 if (input[i] === "ㅜ") {
@@ -108,21 +112,28 @@ function korToEng(input) {
                     } else
                     if(input[i+1] === "ㅣ") {
                         engName.push("wi");
+                    } else {
+                        letterVowel = mapVowel(input[i]);
+                        engName.push(letterVowel);
                     }
                 } else 
                 if (input[i] === "ㅡ") {
                     if(input[i+1] === "ㅣ") {
                         engName.push("eui");
+                    } else {
+                        letterVowel = mapVowel(input[i]);
+                        engName.push(letterVowel);
                     }
 
                 } else {
-                letterVowel = mapVowel(input[i]);
-                engName.push(letterVowel);
-                }
-        }
+                    letterVowel = mapVowel(input[i]);
+                    engName.push(letterVowel);
+                    }
+        } 
     }
 
-    console.log(engName);
+   finalName = engName.join("")
+    output.innerHTML = finalName;
 }
 
 //function to convert letters exluding "ㅇ" and "ㄹ" (these symbols convert to more than one english symbol depending on their position)
