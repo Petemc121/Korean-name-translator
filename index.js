@@ -41,7 +41,7 @@ button.addEventListener('click', function () {
             disassemble = Hangul.disassemble(nameIn);
             console.log(disassemble);
             conReturn = korToEng(disassemble);
-            console.log(conReturn)
+           
 
 
 
@@ -64,25 +64,25 @@ function korToEng(input) {
 
             letterConst = mapConst(input[i]);
 
-            if (letterConst == false) {
-                if (input[i] == "ㅇ") {
-                    if (hangeulVowels.includes(input[i + 1])) {
-                        let engLetter = "";
-                        engName.push(engLetter);
+            if (letterConst === false) {
+                if (input[i] === "ㅇ") {
+                    if (hanguelVowels.includes(input[i + 1])) {
+                       engName = engName;
                     } else {
                         engName.push('ng');
                     }
-                } else if (input[i] == "ㄹ") {
-                    if (input[i] == input[0]) {
+                } else if (input[i] === "ㄹ") {
+                    if (i == 0) {
                         engName.push('R');
-                    } else if (hangeulVowels.includes(input[i - 1])) {
+                    } else if (hanguelVowels.includes(input[i - 1])) {
                         engName.push('r');
                     } else {
                         engName.push('l');
                     }
                 }
             } else {
-                engName.push(letterTest);
+                engName.push(letterConst);
+              
             }
 
         } else if (hanguelVowels.includes(input[i])) {
@@ -129,7 +129,7 @@ function korToEng(input) {
 
 function mapConst(letter) {
 
-    if (letter != "ㅇ" || letter != "ㄹ") {
+    if (letter != "ㅇ" && letter != "ㄹ") {
         position = hanguelConst.indexOf(letter)
 
         newletter = englishConst[position];
@@ -142,9 +142,9 @@ function mapConst(letter) {
 
 function mapVowel(letter) {
 
-        position = hanguelConst.indexOf(letter)
+        position = hanguelVowels.indexOf(letter)
 
-        newletter = englishConst[position];
+        newletter = englishVowels[position];
         return newletter
 
 }
