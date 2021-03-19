@@ -20,3 +20,8 @@ body {
 #button {
     margin-top:20px;
 }
+
+#output{
+    font-size: 30px;
+    font-weight:bold;
+}
