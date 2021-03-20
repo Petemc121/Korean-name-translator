@@ -44,8 +44,6 @@ button.addEventListener('click', function () {
             conReturn = korToEng(disassemble);
            
 
-
-
         }
     } else {
         alert("Please enter your korean name")
