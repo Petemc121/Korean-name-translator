@@ -17,7 +17,7 @@ const hanguelConst = [
 
 const hanguelDoubleConst = ["ㄸ", "ㅃ", "ㅆ", "ㅉ", "ㄲ"];
 
-const hanguelDoubleConst = ["dd", "bb", "ss", "jj", "gg"];
+const englishDoubleConst = ["dd", "bb", "ss", "jj", "gg"];
 
 const englishConst = [
   "n",
@@ -177,16 +177,21 @@ function korToEng(input) {
       }
     } else if (hanguelDoubleConst.includes(input[i])) {
       if (hanguelConst.includes(input[i + 1])) {
-        if (input[i] == "ㅆ") {
-          engName.push("t");
-        } else if (input[i] == "ㄸ") {
-          engName.push("t");
-        } else if (input[i] == "ㅃ") {
-          engName.push("pp");
-        } else if (input[i] == "ㅉ") {
-          engName.push("t");
-        } else if (input[i] == "ㄲ") {
-          engName.push("k");
+        if (input[i + 1] == "ㅇ") {
+          doubleConst = mapDoubleConst(input[i]);
+          engName.push(doubleConst);
+        } else {
+          if (input[i] == "ㅆ") {
+            engName.push("t");
+          } else if (input[i] == "ㄸ") {
+            engName.push("t");
+          } else if (input[i] == "ㅃ") {
+            engName.push("pp");
+          } else if (input[i] == "ㅉ") {
+            engName.push("t");
+          } else if (input[i] == "ㄲ") {
+            engName.push("k");
+          }
         }
       } else {
         doubleConst = mapDoubleConst(input[i]);
