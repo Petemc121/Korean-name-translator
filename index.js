@@ -132,7 +132,7 @@ button.addEventListener("click", function () {
     } else {
       // this is A function built into hangeul.js, a library that disects Korean letters into their separated symbols
 
-      disassemble = Hangul.d(nameIn);
+      disassemble = Hangul.d(nameIn, true);
       console.log(disassemble);
       conReturn = korToEng(disassemble);
     }
@@ -145,28 +145,31 @@ button.addEventListener("click", function () {
 
 function korToEng(input) {
   engName = [];
-  for (var i; i < input.length; i++) {
-    for (var j = 0; j < input.length; j++) {
+  for (var i = 0; i < input.length; i++) {
+    for (var j = 0; j < input[i].length; j++) {
       if (hanguelConst.includes(input[i][j])) {
         letterConst = mapConst(input[i][j]);
 
         if (letterConst === false) {
           if (input[i][j] === "ㅇ") {
-            if (hanguelVowels.includes(input[i + 1])) {
+            if (
+              hanguelVowels.includes(input[i][j + 1]) ||
+              hanguelVowels.includes(input[i + 1][0])
+            ) {
               engName = engName;
             } else {
               engName.push("ng");
             }
           } else if (input[i][j] === "ㄹ") {
-            if (i == 0) {
+            if (j == 0) {
               engName.push("R");
-            } else if (hanguelVowels.includes(input[i - 1])) {
+            } else if (hanguelVowels.includes(input[i][j - 1])) {
               engName.push("r");
             } else {
               engName.push("l");
             }
           } else if (input[i][j] == "ㄱ") {
-            if (i == 0) {
+            if (j == 0) {
               engName.push("K");
             } else {
               engName.push("g");
@@ -176,8 +179,11 @@ function korToEng(input) {
           engName.push(letterConst);
         }
       } else if (hanguelDoubleConst.includes(input[i][j])) {
-        if (hanguelConst.includes(input[i + 1])) {
-          if (input[i + 1] == "ㅇ") {
+        if (
+          hanguelConst.includes(input[i][j + 1]) ||
+          hanguelConst.includes(input[i + 1][0])
+        ) {
+          if (input[i][j + 1] == "ㅇ" || input[i + 1][0] == "ㅇ") {
             doubleConst = mapDoubleConst(input[i][j]);
             engName.push(doubleConst);
           } else {
@@ -199,29 +205,29 @@ function korToEng(input) {
         }
       } else if (hanguelVowels.includes(input[i][j])) {
         if (input[i][j] === "ㅗ") {
-          if (input[i + 1] === "ㅏ") {
+          if (input[i][j + 1] === "ㅏ") {
             engName.push("w");
-          } else if (input[i + 1] === "ㅐ") {
+          } else if (input[i][j + 1] === "ㅐ") {
             engName.push("w");
-          } else if (input[i + 1] === "ㅣ") {
+          } else if (input[i][j + 1] === "ㅣ") {
             engName.push("o");
           } else {
             letterVowel = mapVowel(input[i][j]);
             engName.push(letterVowel);
           }
         } else if (input[i][j] === "ㅜ") {
-          if (input[i + 1] === "ㅓ") {
+          if (input[i][j + 1] === "ㅓ") {
             engName.push("w");
-          } else if (input[i + 1] === "ㅔ") {
+          } else if (input[i][j + 1] === "ㅔ") {
             engName.push("w");
-          } else if (input[i - 1] === "ㅇ") {
+          } else if (input[i][j + 1] === "ㅇ") {
             engName.push("woo");
           } else {
             letterVowel = mapVowel(input[i][j]);
             engName.push(letterVowel);
           }
         } else if (input[i][j] === "ㅡ") {
-          if (input[i + 1] === "ㅣ") {
+          if (input[i][j + 1] === "ㅣ") {
             engName.push("eu");
           } else {
             letterVowel = mapVowel(input[i][j]);
@@ -233,11 +239,12 @@ function korToEng(input) {
         }
       }
     }
-
     engName.push(" ");
   }
   finalName = engName.join("");
   output.innerHTML = finalName;
+  alert("worked");
+  alert(finalName);
 }
 
 //function to convert letters exluding "ㅇ" and "ㄹ" (these symbols convert to more than one english symbol depending on their position)
