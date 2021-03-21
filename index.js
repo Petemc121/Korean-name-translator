@@ -14,6 +14,11 @@ const hanguelConst = [
   "ㄹ",
   "ㅇ",
 ];
+
+const hanguelDoubleConst = ["ㄸ", "ㅃ", "ㅆ", "ㅉ", "ㄲ"];
+
+const hanguelDoubleConst = ["dd", "bb", "ss", "jj", "gg"];
+
 const englishConst = [
   "n",
   "d",
@@ -170,6 +175,13 @@ function korToEng(input) {
       } else {
         engName.push(letterConst);
       }
+    } else if (hanguelDoubleConst.includes(input[i])) {
+      if (hanguelConst.includes(input[i + 1])) {
+
+      } else {
+         doubleConst = mapDoubleConst(input[i]);
+         engName.push(doubleConst);
+      }
     } else if (hanguelVowels.includes(input[i])) {
       if (input[i] === "ㅗ") {
         if (input[i + 1] === "ㅏ") {
@@ -222,6 +234,13 @@ function mapConst(letter) {
   } else {
     return false;
   }
+}
+
+function mapDoubleConst(letter) {
+  position = hanguelDoubleConst.indexOf(letter);
+
+  newletter = englishDoubleConst[position];
+  return newletter;
 }
 
 function mapVowel(letter) {
