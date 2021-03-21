@@ -173,29 +173,29 @@ function korToEng(input) {
     } else if (hanguelVowels.includes(input[i])) {
       if (input[i] === "ㅗ") {
         if (input[i + 1] === "ㅏ") {
-          engName.push("wa");
+          engName.push("w");
         } else if (input[i + 1] === "ㅐ") {
-          engName.push("wae");
+          engName.push("w");
         } else if (input[i + 1] === "ㅣ") {
-          engName.push("wi");
+          engName.push("o");
         } else {
           letterVowel = mapVowel(input[i]);
           engName.push(letterVowel);
         }
       } else if (input[i] === "ㅜ") {
         if (input[i + 1] === "ㅓ") {
-          engName.push("weo");
+          engName.push("w");
         } else if (input[i + 1] === "ㅔ") {
-          engName.push("wae");
-        } else if (input[i + 1] === "ㅣ") {
-          engName.push("wi");
+          engName.push("w");
+        } else if (input[i - 1] === "ㅇ") {
+          engName.push("woo");
         } else {
           letterVowel = mapVowel(input[i]);
           engName.push(letterVowel);
         }
       } else if (input[i] === "ㅡ") {
         if (input[i + 1] === "ㅣ") {
-          engName.push("eui");
+          engName.push("eu");
         } else {
           letterVowel = mapVowel(input[i]);
           engName.push(letterVowel);
