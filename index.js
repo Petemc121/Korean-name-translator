@@ -148,9 +148,18 @@ function korToEng(input) {
   for (var i = 0; i < input.length; i++) {
     for (var j = 0; j < input[i].length; j++) {
       if (hanguelConst.includes(input[i][j])) {
+
         letterConst = mapConst(input[i][j]);
 
         if (letterConst === false) {
+          if(i === input.length -1 && j === input[i].length - 1) {
+            if (input[i][j] === "ㅇ") {
+            
+                engName.push("ng");
+      
+            }
+          } else {
+
           if (input[i][j] === "ㅇ") {
             if (
               hanguelVowels.includes(input[i][j + 1]) ||
@@ -175,10 +184,25 @@ function korToEng(input) {
               engName.push("g");
             }
           }
+
+        }
         } else {
           engName.push(letterConst);
         }
       } else if (hanguelDoubleConst.includes(input[i][j])) {
+        if(i === input.length -1 && j === input[i].length - 1) {
+          if (input[i][j] == "ㅆ") {
+            engName.push("t");
+          } else if (input[i][j] == "ㄸ") {
+            engName.push("t");
+          } else if (input[i][j] == "ㅃ") {
+            engName.push("pp");
+          } else if (input[i][j] == "ㅉ") {
+            engName.push("t");
+          } else if (input[i][j] == "ㄲ") {
+            engName.push("k");
+          }
+         } else {
         if (
           hanguelConst.includes(input[i][j + 1]) ||
           hanguelConst.includes(input[i + 1][0])
@@ -203,6 +227,7 @@ function korToEng(input) {
           doubleConst = mapDoubleConst(input[i][j]);
           engName.push(doubleConst);
         }
+      }
       } else if (hanguelVowels.includes(input[i][j])) {
         if (input[i][j] === "ㅗ") {
           if (input[i][j + 1] === "ㅏ") {
