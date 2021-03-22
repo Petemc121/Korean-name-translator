@@ -1,3 +1,6 @@
+const button = document.getElementById("button");
+const output = document.getElementById("output");
+
 const hanguelConst = [
   "ㄴ",
   "ㄷ",
@@ -14,10 +17,6 @@ const hanguelConst = [
   "ㄹ",
   "ㅇ",
 ];
-
-const hanguelDoubleConst = ["ㄸ", "ㅃ", "ㅆ", "ㅉ", "ㄲ"];
-
-const englishDoubleConst = ["dd", "bb", "ss", "jj", "gg"];
 
 const englishConst = [
   "n",
@@ -69,10 +68,7 @@ const englishVowels = [
   "ae",
   "yae",
 ];
-const hanguelVowels2 = ["ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"];
-const englishVowels2 = ["wa", "wae", "wi", "weo", "wue", "wui", "eui"];
-const button = document.getElementById("button");
-const output = document.getElementById("output");
+
 const alphabet = [
   "a",
   "b",
@@ -101,6 +97,11 @@ const alphabet = [
   "y",
   "z",
 ];
+
+const hanguelDoubleConst = ["ㄸ", "ㅃ", "ㅆ", "ㅉ", "ㄲ"];
+
+const englishDoubleConst = ["dd", "bb", "ss", "jj", "gg"];
+
 const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; // special character regex
 
 //click event for button
