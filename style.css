@@ -3,6 +3,7 @@ body {
     flex-direction:row;
     justify-content:center;
     margin-top:300px;
+    background-color:rgb(197, 221, 252);
 }
 .center {
     display:flex;
@@ -10,15 +11,38 @@ body {
     align-items:center;
 }
 
+#nameIn {
+    height:30px;
+    width:200px;
+    text-align:center;
+    font-family:'Courier New', Courier, monospace;
+    font-size:30px;
+}
+
 .inout {
     text-align:center;
     margin-top:20px;
     margin-bottom:20px;
+    font-family:'Courier New', Courier, monospace;
+
 
 }
 
 #button {
     margin-top:20px;
+    font-size:30px;
+    font-weight:bold;
+    padding:10px;
+    background-color:royalblue;
+    border:none;
+    border-radius:5px;
+    color:white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#button:focus
+{
+    border:2px solid black;
 }
 
 #output{
