@@ -1,5 +1,6 @@
 const button = document.getElementById("button");
 const output = document.getElementById("output");
+const drumRoll = document.getElementById("drumRoll")
 
 const hanguelConst = [
   "ㄴ",
@@ -263,7 +264,8 @@ function korToEng(input) {
     engName.push(" ");
   }
   finalName = engName.join("");
-  output.innerHTML = finalName;
+  drumRollPlease();
+  outputName(finalName);
 }
 
 //function to convert letters exluding "ㅇ" and "ㄹ" (these symbols convert to more than one english symbol depending on their position)
@@ -291,4 +293,17 @@ function mapVowel(letter) {
 
   newletter = englishVowels[position];
   return newletter;
+}
+
+function outputName(name) {
+  setTimeout(() => {
+    output.textContent = name;
+  }, 1300);
+}
+
+function drumRollPlease() {
+  drumRoll.style.display = "block"
+  setTimeout(() => {
+    drumRoll.style.display = "none";
+  }, 1300);
 }
